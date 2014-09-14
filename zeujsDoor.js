@@ -11,5 +11,11 @@ module.exports =
   ],
   prometheusTypes: [
     require('./types/Password.js'),
-  ]
+  ],
+  artemisMiddlewares: [
+    {
+      id: "identity",
+      action: require('./middlewares/identity.js')
+    }
+  ],
 };
