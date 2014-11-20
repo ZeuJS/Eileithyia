@@ -1,7 +1,11 @@
 {
-  "name": "zeujsEileithyia",
+  "name": "zeujs-eileithyia",
   "version": "0.0.1-alpha",
   "dependencies": {
     "bcrypt": "~0.8.0"
+  },
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/ZeuJS/Eileithyia.git"
   }
 }
