@@ -8,6 +8,7 @@ module.exports =
   artemisRoutes: [
     require('./routes/users.js'),
     require('./routes/user.js'),
+    require('./routes/login.js'),
   ],
   prometheusTypes: [
     require('./types/Password.js'),
@@ -16,6 +17,10 @@ module.exports =
     {
       id: "identity",
       action: require('./middlewares/identity.js')
+    },
+    {
+      id: "isLogged",
+      action: require('./middlewares/isLogged.js')
     }
   ],
 };
