@@ -17,6 +17,14 @@ module.exports = function (rails, pass) {
       var storage = rails.services.findById('storage');
       var usersStorage = storage.find('users');
       usersStorage.findOne({email: credentials.user}, function (err, user) {
+        if (!user) {
+          return pass(false, function() {
+            rails.response.json({
+              success: false,
+              message: 'User not found.'
+            }, 403)
+          });
+        }
         bcrypt.compare(credentials.password, user.password, function(err, result) {
           rails.identity = user;
           pass(result, function() {
