@@ -8,7 +8,22 @@ module.exports = {
     return {
       email: [types.find('Email')],
       password: types.find('Password'),
+      personnalData: {
+        firstname: String,
+        lastname: String
+      },
+      tokens: [{
+        part: {
+          access: String,
+          refresh: String
+        },
+        lifetime: Number,
+        expiration: Date
+      }]
     }
+  },
+  masks: {
+    login: 'email'
   }
 };
 

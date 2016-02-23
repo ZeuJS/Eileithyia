@@ -10,20 +10,53 @@ indexDefinition.push({
     var storage = rails.services.findById('storage');
     var usersSchema = storage.find('users');
     var document = rails.request.params;
+
     usersSchema.insert(document, function(err, document) {
       if (err) {
         rails.response.json({
-          success: false,
           errors: err
-        });
+        }, 409);
       } else {
         rails.response.json({
-          success: true,
           document: document
         });
       }
     });
 
+  }
+})
+
+indexDefinition.push({
+  id: "GET",
+  action: function action(rails) {
+    var storage = rails.services.findById('storage');
+    var usersSchema = storage.find('users');
+
+    usersSchema.find({}, function(err, documents) {
+      if (err) {
+        rails.response.json({
+          errors: err
+        }, 409);
+        return;
+      }
+      documents.forEach(function(document, index, array) {
+        array[index] = {
+          id: document._id,
+          email: document.email,
+        }
+      })
+      rails.response.json({
+        users: documents
+      });
+    });
+
+  }
+})
+
+indexDefinition.push({
+  id: "OPTIONS",
+  action: function action(rails) {
+    rails.response.json({});
   }
 })
 

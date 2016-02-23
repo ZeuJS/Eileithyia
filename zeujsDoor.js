@@ -9,6 +9,7 @@ module.exports =
     require('./routes/users.js'),
     require('./routes/user.js'),
     require('./routes/login.js'),
+    require('./routes/oauth2/generate.js')
   ],
   prometheusTypes: [
     require('./types/Password.js'),
